@@ -1,6 +1,6 @@
 class DayAnalyzer {
     constructor() {
-        this.apiKey = 'AIzaSyCHFlZ_41XO6zHuKGdBhQLtyiaNZ0BHOwc'; // Replace with your API key
+        this.apiKey = 'API_key_here'; 
         this.apiUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
         this.init();
     }
