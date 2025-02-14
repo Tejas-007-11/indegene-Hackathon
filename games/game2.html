@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peaceful Garden</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #87CEEB, #98FB98);
+            font-family: Arial, sans-serif;
+            touch-action: manipulation;
+        }
+
+        #garden {
+            width: 100vw;
+            height: 100vh;
+            cursor: pointer;
+        }
+
+        .flower {
+            position: absolute;
+            transition: transform 1s ease-out;
+            cursor: pointer;
+        }
+
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .flower-btn {
+            padding: 8px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 15px;
+            background: #fff;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .flower-btn:hover {
+            transform: scale(1.05);
+        }
+
+        #message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .rain {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            width: 2px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="garden"></div>
+    <div id="controls">
+        <h3 style="margin-top: 0;">Peaceful Garden</h3>
+        <p>Click anywhere to plant a flower<br>Click a flower to make it grow</p>
+        <button class="flower-btn" onclick="toggleRain()">☔ Gentle Rain</button>
+        <button class="flower-btn" onclick="addButterfly()">🦋 Add Butterfly</button>
+    </div>
+    <div id="message"></div>
+
+    <script>
+        const garden = document.getElementById('garden');
+        const messages = [
+            "Watch your garden grow...",
+            "Every flower is unique",
+            "Take your time",
+            "Nature has no hurry",
+            "Breathe and relax",
+            "You're creating beauty"
+        ];
+
+        let isRaining = false;
+        let raindrops = [];
+        let butterflies = [];
+
+        function createFlower(x, y) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = `${x - 25}px`;
+            flower.style.top = `${y - 25}px`;
+            flower.style.transform = 'scale(0)';
+            
+            const petalColors = [
+                '#FFB7C5', // pink
+                '#87CEEB', // sky blue
+                '#DDA0DD', // plum
+                '#98FB98', // pale green
+                '#FFA07A'  // light salmon
+            ];
+            
+            const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+            
+            flower.innerHTML = `
+                <svg width="50" height="50" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="8" fill="#FFD700"/>
+                    <g fill="${color}">
+                        <ellipse cx="25" cy="12" rx="8" ry="12"/>
+                        <ellipse cx="25" cy="38" rx="8" ry="12"/>
+                        <ellipse cx="12" cy="25" rx="12" ry="8"/>
+                        <ellipse cx="38" cy="25" rx="12" ry="8"/>
+                    </g>
+                    <rect x="24" y="40" width="2" height="20" fill="#228B22" transform="rotate(${Math.random() * 20 - 10} 25 50)"/>
+                </svg>
+            `;
+            
+            garden.appendChild(flower);
+            
+            setTimeout(() => {
+                flower.style.transform = 'scale(0.3)';
+            }, 100);
+            
+            flower.addEventListener('click', () => {
+                const currentScale = parseFloat(flower.style.transform.match(/scale\((.*?)\)/)[1]);
+                if (currentScale < 1) {
+                    flower.style.transform = `scale(${currentScale + 0.1})`;
+                    showMessage();
+                }
+            });
+        }
+
+        function createButterfly() {
+            const butterfly = document.createElement('div');
+            butterfly.style.position = 'absolute';
+            butterfly.style.pointerEvents = 'none';
+            butterfly.innerHTML = '🦋';
+            butterfly.style.fontSize = '24px';
+            butterfly.style.transition = 'transform 0.3s';
+            garden.appendChild(butterfly);
+            return butterfly;
+        }
+
+        function addButterfly() {
+            const butterfly = createButterfly();
+            butterflies.push({
+                element: butterfly,
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                targetX: Math.random() * window.innerWidth,
+                targetY: Math.random() * window.innerHeight,
+                speed: 2
+            });
+        }
+
+        function updateButterflies() {
+            butterflies.forEach(butterfly => {
+                const dx = butterfly.targetX - butterfly.x;
+                const dy = butterfly.targetY - butterfly.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 10) {
+                    butterfly.targetX = Math.random() * window.innerWidth;
+                    butterfly.targetY = Math.random() * window.innerHeight;
+                }
+
+                butterfly.x += (dx / distance) * butterfly.speed;
+                butterfly.y += (dy / distance) * butterfly.speed;
+
+                butterfly.element.style.left = `${butterfly.x}px`;
+                butterfly.element.style.top = `${butterfly.y}px`;
+                butterfly.element.style.transform = `rotate(${Math.atan2(dy, dx) * 180 / Math.PI}deg)`;
+            });
+            requestAnimationFrame(updateButterflies);
+        }
+
+        function createRaindrop() {
+            const raindrop = document.createElement('div');
+            raindrop.className = 'rain';
+            raindrop.style.left = `${Math.random() * window.innerWidth}px`;
+            raindrop.style.top = '-20px';
+            raindrop.style.height = `${Math.random() * 10 + 15}px`;
+            garden.appendChild(raindrop);
+            
+            const duration = Math.random() * 1000 + 1000;
+            raindrop.animate([
+                { transform: 'translateY(0)' },
+                { transform: `translateY(${window.innerHeight + 20}px)` }
+            ], {
+                duration: duration,
+                easing: 'linear'
+            }).onfinish = () => {
+                raindrop.remove();
+            };
+        }
+
+        function toggleRain() {
+            isRaining = !isRaining;
+            if (isRaining) {
+                rainInterval = setInterval(() => {
+                    for (let i = 0; i < 3; i++) {
+                        createRaindrop();
+                    }
+                }, 100);
+            } else {
+                clearInterval(rainInterval);
+            }
+        }
+
+        function showMessage() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = messages[Math.floor(Math.random() * messages.length)];
+            messageDiv.style.opacity = '1';
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+            }, 2000);
+        }
+
+        garden.addEventListener('click', (e) => {
+            if (e.target === garden) {
+                createFlower(e.clientX, e.clientY);
+                showMessage();
+            }
+        });
+
+        updateButterflies();
+    </script>
+</body>
+</html>

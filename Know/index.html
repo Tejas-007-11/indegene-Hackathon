@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Reflection Analyzer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header animate__animated animate__fadeIn">
+            <h1>Daily Reflection Analyzer</h1>
+            <p>Share your day and get personalized insights</p>
+        </div>
+
+        <div class="content-wrapper animate__animated animate__fadeInUp">
+            <div class="input-section">
+                <textarea id="dayDescription" placeholder="Tell me about your day... What did you do? How did you feel? What were your accomplishments?"></textarea>
+                <button id="analyzeBtn">Analyze My Day</button>
+            </div>
+
+            <div class="results-section">
+                <div class="score-card">
+                    <h2>Day Score</h2>
+                    <div class="score">--</div>
+                </div>
+
+                <div class="analysis-card">
+                    <h2>Analysis</h2>
+                    <div id="analysisText">Your analysis will appear here...</div>
+                </div>
+
+                <div class="suggestions-card">
+                    <h2>Tomorrow's Focus</h2>
+                    <div id="suggestions">Suggestions will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>Analyzing your day...</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

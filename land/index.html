@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hygieia - Your AI-powered healthcare assistant for personalized medical advice and wellness support">
+    <title>Hygieia - Your Intelligent Healthcare Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">HY</span>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="/Breathing/index.html" class="nav-link">Breathing Test</a>
+                <a href="/Know/index.html" class="nav-link">GoodDay-Meter</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="/games/index.html" class="nav-link sign-in">Games</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">Welcome to Hygieia</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Your AI-Powered Healthcare Companion</p>
+            <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                <a href="#features" class="primary-btn">Explore Features</a>
+                <a href="/frontend/index.html" class="secondary-btn">Speak to Hygieia</a>
+            </div>
+        </div>
+        <div class="hero-image" data-aos="fade-left">
+            <img src="images/chat.png" alt="Healthcare illustration">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 data-aos="fade-up">Why Choose Hygieia?</h2>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up">
+                <i class="fas fa-robot"></i>
+                <h3>AI-Powered Assistance</h3>
+                <p>24/7 intelligent healthcare support tailored to your needs</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-user-shield"></i>
+                <h3>Privacy First</h3>
+                <p>Your data is encrypted and protected with military-grade security</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-heart"></i>
+                <h3>Personalized Care</h3>
+                <p>Customized health recommendations based on your profile</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-right">
+                <h2>About Hygieia</h2>
+                <p>Hygieia combines cutting-edge AI technology with healthcare expertise to provide you with reliable, personalized medical assistance. Our platform is designed to make healthcare more accessible, efficient, and user-friendly.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-check"></i> 24/7 Medical Assistance</li>
+                    <li><i class="fas fa-check"></i> Secure Data Protection</li>
+                    <li><i class="fas fa-check"></i> Expert Medical Team</li>
+                </ul>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <img src="./images/hygieia.png" alt="About Hygieia">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2 data-aos="fade-up">What Our Users Say</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial-card" data-aos="fade-up">
+                <div class="testimonial-content">
+                    <p>"Hygieia has revolutionized how I manage my health. The AI recommendations are spot-on!"</p>
+                    <div class="testimonial-author">
+                        <img src="./images/ss.jpg" alt="User">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <span>Active User</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- More testimonials... -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 data-aos="fade-up">Get in Touch</h2>
+        <div class="contact-container">
+            <form class="contact-form" data-aos="fade-up">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="primary-btn">Send Message</button>
+            </form>
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>tejaskrishna.as@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(+91)-8105516094</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Hygieia</h3>
+                <p>Your Healthcare Assistant</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hygieia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

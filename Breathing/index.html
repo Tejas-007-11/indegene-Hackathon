@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Floating Oxygen Bubbles -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Main Glass UI -->
+    <div class="glass-card">
+        <h2>Lung Capacity Test</h2>
+        <div class="circle-container">
+            <svg>
+                <defs>
+                    <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF7D00"/>
+                        <stop offset="100%" stop-color="#78290F"/>
+                    </linearGradient>
+                </defs>
+                <circle class="background-circle" cx="100" cy="100" r="90"/>
+                <circle class="progress-circle" cx="100" cy="100" r="90"/>
+            </svg>
+        </div>
+
+        <div id="timer">Press Start</div>
+        
+        <div class="buttons">
+            <button id="start-btn">Start Test</button>
+            <button id="stop-btn" disabled>Stop</button>
+        </div>
+      </div>
+ <!-- Result  Outside the Glass Box -->
+
+    <div id="result"></div>
+</div>
+
+    <script src="script.js"></script>
+  
+</body>
+</html>

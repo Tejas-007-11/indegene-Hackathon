@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Therapeutic Games</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: #2c3e50;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #546e7a;
+            margin-bottom: 40px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #00bcd4, #3f51b5);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            margin: 10px 0;
+            color: #3f51b5;
+        }
+
+        .card h2 {
+            color: #1a237e;
+            margin: 15px 0;
+        }
+
+        .card p {
+            color: #546e7a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .play-button {
+            background: linear-gradient(90deg, #00bcd4, #3f51b5);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #546e7a;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Therapeutic Games</h1>
+        <div class="subtitle">Gentle activities for mindfulness and relaxation</div>
+    </header>
+
+    <div class="cards-container">
+        <div class="card" onclick="window.location.href='game1.html'">
+            <div class="card-icon">🫧</div>
+            <h2>Bubble Calm</h2>
+            <p>Create and interact with peaceful floating bubbles. A gentle exercise in mindfulness and relaxation.</p>
+            <button class="play-button">Play Now</button>
+        </div>
+
+        <div class="card" onclick="window.location.href='game2.html'">
+            <div class="card-icon">🌸</div>
+            <h2>Peaceful Garden</h2>
+            <p>Plant and nurture your own virtual garden. Watch flowers grow and butterflies dance in this calming space.</p>
+            <button class="play-button">Play Now</button>
+        </div>
+
+        <div class="card" onclick="window.location.href='game3.html'">
+            <div class="card-icon">🎨</div>
+            <h2>Mindful Colors</h2>
+            <p>A gentle color-matching experience focused on mindfulness and peaceful discovery.</p>
+            <button class="play-button">Play Now</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Take your time. Move at your own pace. Every moment is an opportunity for mindfulness.</p>
+    </footer>
+
+    <script>
+        // Add ripple effect to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                this.style.transform = 'translateY(-10px)';
+            });
+
+            card.addEventListener('mouseleave', function(e) {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

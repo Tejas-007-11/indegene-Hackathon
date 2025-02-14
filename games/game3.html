@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mindful Colors</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ff 100%);
+            font-family: Arial, sans-serif;
+            color: #444;
+        }
+
+        #game-container {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        #message {
+            padding: 15px 25px;
+            background: white;
+            border-radius: 25px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: fixed;
+            bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .breath-circle {
+            width: 20px;
+            height: 20px;
+            background: #a6c1ee;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: transform 0.5s ease;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <h3 style="margin-top: 0;">Mindful Colors</h3>
+        <p>Take your time to match the colors<br>
+        Breathe deeply between moves<br>
+        Focus on the peaceful patterns</p>
+    </div>
+    
+    <div id="game-container">
+        <div id="board"></div>
+    </div>
+    
+    <div id="message"></div>
+
+    <script>
+        const colors = [
+            '#FFB7C5', // pink
+            '#87CEEB', // sky blue
+            '#98FB98', // pale green
+            '#DDA0DD', // plum
+            '#FFA07A', // light salmon
+            '#F0E68C', // khaki
+            '#E6E6FA', // lavender
+            '#B0E0E6'  // powder blue
+        ];
+
+        const messages = [
+            "Take a deep breath...",
+            "Notice the colors...",
+            "Stay present...",
+            "Feel the calmness...",
+            "Every color is unique...",
+            "Move at your own pace...",
+            "Enjoy the moment..."
+        ];
+
+        let cards = [];
+        let flippedCards = [];
+        let canFlip = true;
+
+        function createBoard() {
+            const board = document.getElementById('board');
+            const gameColors = [...colors, ...colors];
+            gameColors.sort(() => Math.random() - 0.5);
+
+            gameColors.forEach((color, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.color = color;
+                card.dataset.index = index;
+                card.style.backgroundColor = 'white';
+                
+                card.addEventListener('click', () => flipCard(card));
+                board.appendChild(card);
+                cards.push(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (!canFlip || flippedCards.includes(card) || card.style.backgroundColor !== 'white') return;
+
+            card.style.backgroundColor = card.dataset.color;
+            createBreathCircle(card);
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                canFlip = false;
+                checkMatch();
+            }
+
+            showMessage();
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            
+            setTimeout(() => {
+                if (card1.dataset.color === card2.dataset.color) {
+                    flippedCards = [];
+                } else {
+                    card1.style.backgroundColor = 'white';
+                    card2.style.backgroundColor = 'white';
+                }
+                flippedCards = [];
+                canFlip = true;
+            }, 1000);
+        }
+
+        function createBreathCircle(card) {
+            const rect = card.getBoundingClientRect();
+            const circle = document.createElement('div');
+            circle.className = 'breath-circle';
+            circle.style.left = rect.left + rect.width / 2 + 'px';
+            circle.style.top = rect.top + rect.height / 2 + 'px';
+            document.body.appendChild(circle);
+
+            requestAnimationFrame(() => {
+                circle.style.transform = 'scale(20)';
+                circle.style.opacity = '0';
+            });
+
+            setTimeout(() => circle.remove(), 1000);
+        }
+
+        function showMessage() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = messages[Math.floor(Math.random() * messages.length)];
+            messageDiv.style.opacity = '1';
+            
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+            }, 2000);
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>
