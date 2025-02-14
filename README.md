@@ -71,12 +71,13 @@ GEMINI_API_KEY=your_api_key_here
 
 ### **5️⃣ Run the Backend Server**
 ```sh
+cd backend
 uvicorn app:app --reload
 ```
 The API will be available at **`http://127.0.0.1:8000`**.
 
 ### **6️⃣ Open the Frontend**
-Just open `frontend/index.html` in a browser!
+Just open `land/index.html` in a browser!
 
 ---
 
