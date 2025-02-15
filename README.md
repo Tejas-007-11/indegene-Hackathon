@@ -20,7 +20,7 @@ This is an **AI-powered chatbot** designed to provide **emotional support and me
 
 ## 📸 Screenshots
 
-![Chatbot UI](https://via.placeholder.com/800x400?text=Screenshot+Coming+Soon)
+![Chatbot UI](kk.png)
 
 *More images coming soon!*
 
